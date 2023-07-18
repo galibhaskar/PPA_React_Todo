@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 
 const initialUserState = [];
 
-const UserStateReducer = (state, action) => {
+const userStateReducer = (state, action) => {
   let { type, payload } = action;
 
   switch (type) {
@@ -31,4 +31,4 @@ const UserStateReducer = (state, action) => {
   }
 };
 
-export { UserStateReducer, initialUserState };
+export { userStateReducer, initialUserState };

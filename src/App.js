@@ -1,10 +1,11 @@
-import React, { useState, Fragment, useCallback, useReducer } from "react";
+import React, { Fragment, useContext } from "react";
 import UserEntry from "./components/UserEntry";
-import { v4 } from "uuid";
-import {
-  UserStateReducer,
-  initialUserState,
-} from "./reducers/UserStateReducer";
+// import { v4 } from "uuid";
+// import {
+//   UserStateReducer,
+//   initialUserState,
+// } from "./reducers/UserStateReducer";
+import { UserStateContext, UserStateReducerContext } from "./context/context";
 
 const App = () => {
   // const [users, setUsers] = useState([
@@ -24,8 +25,9 @@ const App = () => {
   //     College: "NAU",
   //   },
   // ]);
-
-  const [users, dispatch] = useReducer(UserStateReducer, initialUserState);
+  const users = useContext(UserStateContext);
+  const dispatch = useContext(UserStateReducerContext);
+  // const [users, dispatch] = useReducer(UserStateReducer, initialUserState);
 
   const onSubmit = (e) => {
     e.preventDefault();

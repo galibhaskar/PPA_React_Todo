@@ -1,9 +1,12 @@
-import { memo, useState } from "react";
+import { memo, useContext, useState } from "react";
+import { UserStateReducerContext } from "../context/context";
 
 const UserEntry = (props) => {
   let { id, Name, College, deleteUser, editProperty } = props;
 
   const [editing, setEditing] = useState(false);
+
+  const dispatch = useContext(UserStateReducerContext);
 
   // console.log("UserEntry rendered for", Name);
 
@@ -13,7 +16,17 @@ const UserEntry = (props) => {
         <input
           type="text"
           value={Name}
-          onChange={(event) => editProperty("Name", id, event.target.value)}
+          onChange={(event) =>
+            dispatch({
+              type: "edit",
+              payload: {
+                propertyName: "Name",
+                userID: id,
+                value: event.target.value,
+              },
+            })
+          }
+          // onChange={(event) => editProperty("Name", id, event.target.value)}
         />
       ) : (
         <span>{`${Name}`} </span>
@@ -23,7 +36,17 @@ const UserEntry = (props) => {
         <input
           type="text"
           value={College}
-          onChange={(event) => editProperty("College", id, event.target.value)}
+          onChange={(event) =>
+            dispatch({
+              type: "edit",
+              payload: {
+                propertyName: "College",
+                userID: id,
+                value: event.target.value,
+              },
+            })
+          }
+          // onChange={(event) => editProperty("College", id, event.target.value)}
         />
       ) : (
         <span>{`${College}`} </span>
