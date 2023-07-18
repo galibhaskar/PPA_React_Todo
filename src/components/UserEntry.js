@@ -33,7 +33,7 @@ const UserEntry = (props) => {
         {editing ? `save` : `edit`}
       </button>
       {editing === false && (
-        <button onClick={() => deleteUser(Name)}>{`delete`}</button>
+        <button onClick={() => deleteUser(id)}>{`delete`}</button>
       )}
     </div>
   );

@@ -1,37 +1,44 @@
-import React, { useState, Fragment, useCallback } from "react";
+import React, { useState, Fragment, useCallback, useReducer } from "react";
 import UserEntry from "./components/UserEntry";
 import { v4 } from "uuid";
+import {
+  UserStateReducer,
+  initialUserState,
+} from "./reducers/UserStateReducer";
 
 const App = () => {
-  const [users, setUsers] = useState([
-    {
-      id: v4(),
-      Name: "Bhaskar",
-      College: "NAU",
-    },
-    {
-      id: v4(),
-      Name: "Jaadhu",
-      College: "NAU",
-    },
-    {
-      id: v4(),
-      Name: "Buffalo",
-      College: "NAU",
-    },
-  ]);
+  // const [users, setUsers] = useState([
+  //   {
+  //     id: v4(),
+  //     Name: "Bhaskar",
+  //     College: "NAU",
+  //   },
+  //   {
+  //     id: v4(),
+  //     Name: "Jaadhu",
+  //     College: "NAU",
+  //   },
+  //   {
+  //     id: v4(),
+  //     Name: "Buffalo",
+  //     College: "NAU",
+  //   },
+  // ]);
+
+  const [users, dispatch] = useReducer(UserStateReducer, initialUserState);
 
   const onSubmit = (e) => {
     e.preventDefault();
     let { name, college } = e.target.elements;
-    setUsers([
-      ...users,
-      {
-        id: v4(),
-        Name: name.value,
-        College: college.value,
+
+    dispatch({
+      type: "insert",
+      payload: {
+        name: name.value,
+        college: college.value,
       },
-    ]);
+    });
+    // setUsers([...users]);
   };
 
   const getAddUserForm = () => {
@@ -47,18 +54,34 @@ const App = () => {
     );
   };
 
-  const onDelete = (userName) => {
-    setUsers(users.filter((_user) => _user.Name !== userName));
+  const onDelete = (id) => {
+    // setUsers(users.filter((_user) => _user.Name !== userName));
 
-    console.log(users);
+    // console.log(users);
+
+    dispatch({
+      type: "delete",
+      payload: {
+        userID: id,
+      },
+    });
   };
 
   const handlePropertyEdit = (propertyName, userID, value) => {
-    let editedUser = users.filter((_user) => _user.id === userID)[0];
+    // let editedUser = users.filter((_user) => _user.id === userID)[0];
 
-    editedUser[propertyName] = value;
+    // editedUser[propertyName] = value;
 
-    setUsers([...users]);
+    // setUsers([...users]);
+
+    dispatch({
+      type: "edit",
+      payload: {
+        propertyName: propertyName,
+        userID: userID,
+        value: value,
+      },
+    });
   };
 
   const renderUsersList = () => {
