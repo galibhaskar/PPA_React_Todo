@@ -4,13 +4,10 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserProvider } from "./context/context";
+import AppRoute from "./AppRoute.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <UserProvider>
-    <App />
-  </UserProvider>
-);
+root.render(<AppRoute />);
 // root.render(<Todo />);
 
 // If you want to start measuring performance in your app, pass a function

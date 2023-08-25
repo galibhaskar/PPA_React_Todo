@@ -3,14 +3,14 @@ import { useEffect, useState, useCallback } from "react";
 let timerRef;
 
 const Timer = () => {
-  // const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(0);
 
   // timerRef = setInterval(() => {
   //   setTimer(timer - 1);
   //   if (timer == 0) clearInterval(timerRef);
   // }, 1000);
 
-  // //   useEffect(createTimer(), []);
+  // useEffect(createTimer(), []);
 
   // const stopTimer = () => {
   //   clearInterval(timerRef);
@@ -22,13 +22,13 @@ const Timer = () => {
   //   createTimer();
   // };
 
-  // return (
-  //   <div className="timerClass">
-  //     <span>{`${timer} seconds`}</span>
-  //     <button onClick={stopTimer}>{`stop`}</button>
-  //     <button onClick={resetTimer}>{`reset`}</button>
-  //   </div>
-  // );
+  return (
+    <div className="timerClass">
+      <span>{`${timer} seconds`}</span>
+      {/* <button onClick={stopTimer}>{`stop`}</button>
+      <button onClick={resetTimer}>{`reset`}</button> */}
+    </div>
+  );
 };
 
 export default Timer;
